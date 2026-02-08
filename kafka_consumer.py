@@ -11,9 +11,9 @@ consumer = KafkaConsumer(
                          'test',
                          bootstrap_servers=['52.63.98.133:9093'],
                          value_deserializer=lambda x: loads(x.decode('utf-8')),
-                         # 【關鍵 2】Read offset (Auto Offset Reset)
-                         # 'earliest': 當你是新的消費者，從「最舊」的訊息開始讀 (適合測試，確保能讀到剛才發送的)
-                         # 'latest': (預設值) 只讀「啟動之後」才送進來的新訊息 (適合即時監控)
+                         # [Key 2] Offset Configuration (Auto Offset Reset)
+                         # 'earliest': Reads from the beginning of the topic history (Ideal for testing to verify past data)
+                         # 'latest': (Default) Reads only new messages sent after connection (Ideal for real-time monitoring)
                          auto_offset_reset='latest',
                          # automatically submit Offset 
                          enable_auto_commit=True)
@@ -23,7 +23,7 @@ consumer = KafkaConsumer(
 #   data = message.value
 #   print(f"Receiving message:")
 #   print(f"   Content (Value): {data}")
-#   print(f"   Data type: {type(data)}")  # 驗證它真的是 dict
+#   print(f"   Data type: {type(data)}") 
 
 try:
   s3 = S3FileSystem()
