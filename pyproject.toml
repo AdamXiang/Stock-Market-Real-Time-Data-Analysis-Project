@@ -7,4 +7,5 @@ requires-python = ">=3.12"
 dependencies = [
     "kafka-python-ng>=2.2.3",
     "pandas>=3.0.0",
+    "s3fs>=2026.2.0",
 ]
